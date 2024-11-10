@@ -20,8 +20,8 @@ const Slogin = () => {
         if (res.data.Status === "Success") {
           console.log(res.data.user);
           localStorage.setItem('user', JSON.stringify(res.data.user));
-            navigate('/shome')
-           alert("login successful")
+          navigate('/shome');
+          alert("login successful");
         } else {
           alert("wrong credentials");
         }
@@ -36,91 +36,79 @@ const Slogin = () => {
 
   return (
     <div>
-      <Home/>
-    
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">  
-      <div className="relative max-w-md w-full bg-white p-8 rounded-md shadow-md overflow-hidden">
-        {/* Front side of the card */}
-     
-      
-        <div className="relative z-10">  
-          <div>
-            <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-4">
-              Login to Seller account
-            </h2>
-            
+      <Home />
+
+      <div
+        className="min-h-screen flex items-center justify-center bg-cover bg-center"
+        style={{ backgroundImage: "url('https://static.vecteezy.com/system/resources/previews/006/262/479/large_2x/white-and-blue-tone-abstract-background-backdrop-for-presentation-design-for-website-concept-of-beauty-and-health-business-brochure-free-photo.jpg')" }}
+      >
+        <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
+
+          {/* Right Side: Image */}
+          <div className="hidden md:block md:w-1/2">
+            <img
+              src="https://i.pinimg.com/564x/ec/c6/f0/ecc6f0bcf3a99ed899eaed8b00237747.jpg"
+              alt="Login Image"
+              className="w-full h-full object-cover"
+            />
           </div>
-          
-      
-          <form className="space-y-6" onSubmit={handleSubmit}>
-       
-          {/* <form className="space-y-6" onSubmit={handleSubmit}> */}
-            {/* Email Input */}
-            <div>
-                
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
 
-            {/* Password Input */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-
-            {/* Submit Button */}
-            <div>
+          {/* Left Side: Login Form */}
+          <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">Log In to Seller account</h2>
+            <form className="space-y-6 w-80" onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
+                  placeholder="Type your email here..."
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
+                  placeholder="Type your password here..."
+                />
+              </div>
               <button
                 type="submit"
-                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-indigo-300 transition-all duration-300"
+                className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded transition"
               >
-                Log in
+                Log In
               </button>
-              <br />
-              <p className="mt-2 text-sm text-gray-600">
-                Don't have an account? Create
-                <button
-                  onClick={formHandle1}
-                  className="ml-2 text-indigo-500 hover:underline focus:outline-none focus:ring focus:border-indigo-300 transition-all duration-300"
-                >
-                  Signup
-                </button>
-              </p>
-            </div>
-          </form>
-          {/* </form> */}
+              <div className="mt-4 text-sm text-gray-600">
+                <span>
+                  Don't have an account?{" "}
+                  <button
+                    onClick={formHandle1}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Signup
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
         </div>
-
-        {/* Backside tilted background */}
-        <div
-          className="absolute h-full w-full bg-indigo-500 transform -skew-y-6 origin-bottom-right"
-        ></div>
-        
-      </div>
       </div>
     </div>
   );
