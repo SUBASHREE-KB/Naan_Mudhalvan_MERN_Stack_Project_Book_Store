@@ -57,7 +57,7 @@ const Asignup = () => {
 
           {/* Left Side: Signup Form */}
           <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Seller Registration</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">Admin Registration</h2>
             <form className="space-y-6 w-80" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
