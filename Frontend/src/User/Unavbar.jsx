@@ -1,24 +1,27 @@
-// src/components/Navbar.js
-
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import {Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Unavbar = () => {
-  const get=localStorage.getItem('user')
+  const user = JSON.parse(localStorage.getItem('user'));
+
   return (
-    <Navbar bg="" variant="dark" expand="lg" style={{backgroundColor:"blue"}}>
+    <Navbar expand="lg" style={{ backgroundColor: "#00072D", padding: '10px 0' }}>
       <Container>
-        <Navbar.Brand ><Link to='/uhome' style={{color:'white',textDecoration:"none"}}>BookStore</Link></Navbar.Brand>
+        <Navbar.Brand>
+          <Link to='/uhome' style={{ color: '#ffffff', textDecoration: "none", fontWeight: 'bold', fontSize: '24px' }}>BookStore</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto" >
-            <Link to="/uhome" style={{padding:"10px",color:"white",textDecoration:"none"}}>Home</Link>
-            <Link to="/uproducts" style={{padding:"10px",color:"white",textDecoration:"none"}}>Books</Link>
-            <Link to="/wishlist" style={{padding:"10px",color:"white",textDecoration:"none"}}>Wishlist</Link>
-            <Link to="/myorders" style={{padding:"10px",color:"white",textDecoration:"none"}}>My orders</Link>
-            <Link to="/" style={{paddingLeft:"10px",paddingTop:"10px",color:"white",textDecoration:"none"}}>Logout</Link>
-            <h4 style={{color:"white",paddingTop:"0px"}}>({JSON.parse(get).name} )</h4>
+          <Nav className="ml-auto" style={{ alignItems: 'center' }}>
+            <Link to="/uhome" style={{ padding: "10px 15px", color: "#ffffff", textDecoration: "none", fontSize: '18px' }}>Home</Link>
+            <Link to="/uproducts" style={{ padding: "10px 15px", color: "#ffffff", textDecoration: "none", fontSize: '18px' }}>Books</Link>
+            <Link to="/wishlist" style={{ padding: "10px 15px", color: "#ffffff", textDecoration: "none", fontSize: '18px' }}>Wishlist</Link>
+            <Link to="/myorders" style={{ padding: "10px 15px", color: "#ffffff", textDecoration: "none", fontSize: '18px' }}>My Orders</Link>
+            <Link to="/" style={{ padding: "10px 15px", color: "#ffffff", textDecoration: "none", fontSize: '18px' }}>Logout</Link>
+            <h4 style={{ color: "#ffffff", margin: '0 0 0 15px', fontSize: '18px' }}>
+              {user ? `Welcome ${user.name}` : ''}
+            </h4>
           </Nav>
         </Navbar.Collapse>
       </Container>

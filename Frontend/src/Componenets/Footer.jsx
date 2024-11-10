@@ -1,21 +1,23 @@
-import React from 'react'
+import React from 'react';
 
 const Footer = () => {
   return (
-    <div>
-        <footer style={{ backgroundColor: 'black', padding: '20px', textAlign: 'center' }}>
-        <div style={{display:"flex",justifyContent:"center"}}>
-        <button id='bt' className='item-center' style={{height:"50px"}} >Contact us</button>
-        </div>
-        <p style={{color:"white"}}>
-"Embark on a literary journey with our book haven – where every page turns into an adventure!"</p>
-            <p  style={{ color: 'white', marginBottom: '0' }}>Call At: 127-865-586-67</p>
-      <p style={{ color: 'white', marginBottom: '0' }}>
-      Copyright  &copy; {new Date().getFullYear()} By BookStore. <br/>All Rights Reserved.
+    <footer style={{ 
+      backgroundColor: '#00072D', 
+      padding: '20px', 
+      textAlign: 'center', 
+      color: '#ffffff',
+      width: '100%' 
+    }}>
+      <p style={{ fontSize: '14px', fontStyle: 'italic', margin: '5px 0' }}>
+        "A book is a dream that you hold in your hands – welcome to a world of endless stories!"
+      </p>
+
+      <p style={{ fontSize: '12px', margin: '5px 0', opacity: '0.8' }}>
+        &copy; {new Date().getFullYear()} BookStore. All Rights Reserved.
       </p>
     </footer>
-    </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

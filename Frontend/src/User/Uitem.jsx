@@ -5,64 +5,63 @@ import Unavbar from './Unavbar';
 import { Button } from 'react-bootstrap';
 
 const Uitem = () => {
-    const [item, setItem] = useState(null); // Initialize item as null
-
+    const [item, setItem] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
         axios.get(`http://localhost:4000/item/${id}`)
-            .then((resp) => {
-                console.log(resp);
-                setItem(resp.data); // Set item to the fetched data (an object, not an array)
-            })
-            .catch(() => {
-                console.log("Did not get data");
-            });
-    }, [id]); // Include 'id' as a dependency to re-fetch data when the ID changes
+            .then((resp) => setItem(resp.data))
+            .catch(() => console.log("Did not get data"));
+    }, [id]);
 
     return (
-        <div>
+        <div className="min-h-screen bg-gray-100">
             <Unavbar />
-            <br />
-            {item && (
-                <div>
-                    <div style={{ display: "flex", justifyContent: "center", height: "450px" }} >
-                        <img src={`http://localhost:4000/${item?.itemImage}`} alt={`${item.itemtype} Image`} />
-                    </div>
-                    <h1 className='text-center'> {item.itemtype}-{item._id.slice(3, 7)}</h1>
-                    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                        <div style={{ width: '38%', marginLeft: "150px" }}>
-                            <h2 style={{ color: "grey" }}><strong>Description</strong></h2>
-                            <hr style={{ height: "3px", backgroundColor: "black" }} />
-                            <p style={{ fontSize: "20px" }}>{item.description}</p>
+            <div className="container mx-auto px-4 py-8">
+                {item && (
+                    <div className="bg-white shadow-lg rounded-lg p-6 md:flex">
+                        {/* Image section */}
+                        <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
+                            <img
+                                src={`http://localhost:4000/${item.itemImage}`}
+                                alt={`${item.itemtype} Image`}
+                                className="object-contain w-full h-full rounded-lg transition-transform duration-300 hover:scale-105"
+                                style={{ maxHeight: '400px' }}
+                            />
                         </div>
-                        <div style={{ marginRight: '300px' }}>
-                            <h2 style={{ color: "grey" }}><strong>Info</strong></h2>
 
-                            <hr style={{ height: "3px", backgroundColor: "black" }} />
-                            <p style={{ fontSize: "20px" }}>Title:  {item.title}</p>
-                            <p style={{ fontSize: "20px" }}>Author:  {item.author}</p>
-                            <p style={{ fontSize: "20px" }}>Genre:  {item.genre}</p>
-                            <p style={{ fontSize: "20px" }}>Price:  {item.price}</p>
-                            {/* <p style={{ fontSize: "20px" }}>Warranty:  1 year</p> */}
-                            <p style={{ fontSize: "20px" }}>Seller:  {item.userName}</p>
+                        {/* Information Section */}
+                        <div className="md:w-1/2 md:pl-8">
+                            <h1 className="text-2xl font-semibold text-gray-800 mb-4 text-center md:text-left">
+                                {item.itemtype} - {item._id.slice(3, 7)}
+                            </h1>
+                            <div className="mb-4">
+                                <h2 className="text-lg font-medium text-gray-600">Description</h2>
+                                <p className="text-gray-700 text-sm mt-1">{item.description}</p>
+                            </div>
+                            <div className="mb-4">
+                                <h2 className="text-lg font-medium text-gray-600">Info</h2>
+                                <p className="text-gray-700">Title: {item.title}</p>
+                                <p className="text-gray-700">Author: {item.author}</p>
+                                <p className="text-gray-700">Genre: {item.genre}</p>
+                                <p className="text-gray-700">Price: ₹{item.price}</p>
+                                <p className="text-gray-700">Seller: {item.userName}</p>
+                            </div>
+                            <div className="flex justify-center md:justify-start mt-6">
+                                <Link to={`/orderitem/${item._id}`}>
+                                    <Button
+                                        variant="primary"
+                                        className="px-4 py-2 rounded shadow-sm transition-all duration-300"
+                                        style={{ backgroundColor: '#3498db', border: 'none' }}
+                                    >
+                                        Buy Now
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-center">
-                        <button
-                            type="submit"
-                            className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700">
-                            <Link to={`/orderitem/${item._id}`} style={{ color: "white", textDecoration: "none" }}  >
-                                Buy Now
-                            </Link>
-                        </button>
-                    </div>
-                </div>
-
-
-            )}
-
-
+                )}
+            </div>
         </div>
     );
 };

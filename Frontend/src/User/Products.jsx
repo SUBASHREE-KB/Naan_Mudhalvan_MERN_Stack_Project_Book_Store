@@ -1,99 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Unavbar from './Unavbar';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Products() {
   const [items, setItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
-    // Fetch all items
     axios
       .get(`http://localhost:4000/item`)
       .then((response) => {
-        const taskData = response.data;
-        setItems(taskData);
+        setItems(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching tasks: ', error);
+        console.error('Error fetching items: ', error);
       });
 
-    // Fetch wishlist items
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user){
-    axios.get(`http://localhost:4000/wishlist/${user.id}`)
-    .then((response) => {
-      const wishlistData = response.data;
-      setWishlist(wishlistData);
-    }) 
-  } 
-  else{
-    console.log('ERROR');
-  }
-    
+    if (user) {
+      axios.get(`http://localhost:4000/wishlist/${user.id}`)
+        .then((response) => {
+          setWishlist(response.data);
+        })
+        .catch((error) => console.error('Error fetching wishlist: ', error));
+    } else {
+      console.log('User not found');
+    }
   }, []);
 
   const addToWishlist = async (itemId) => {
     try {
-      console.log('itemId before find:', itemId);
-      // Find the selected item by itemId
-      const selectedItem = items.find((item) => {
-        console.log('item._id:', item._id);
-        console.log('itemId in find:', itemId);
-        return item._id === itemId;
-      });
-  
-      console.log('selectedItem:', selectedItem);
-  
-      if (!selectedItem) {
-        throw new Error('Selected item not found');
-      }
-  
-      // Destructure the needed properties
+      const selectedItem = items.find((item) => item._id === itemId);
       const { title, itemImage, _id: itemId2 } = selectedItem;
-  
       const userId = JSON.parse(localStorage.getItem('user')).id;
       const userName = JSON.parse(localStorage.getItem('user')).name;
-      console.log('itemId2:', itemId2);
-      console.log('itemId2:', title);
-  
-      // Add item to the wishlist
-      await axios.post(`http://localhost:4000/wishlist/add`, { itemId: itemId2, title, itemImage,userId,userName });
-      // Refresh the wishlist items
+
+      await axios.post(`http://localhost:4000/wishlist/add`, { itemId: itemId2, title, itemImage, userId, userName });
+
       const user = JSON.parse(localStorage.getItem('user'));
-      if(user){
-      axios.get(`http://localhost:4000/wishlist/${user.id}`)
-      .then((response) => {
-        const wishlistData = response.data;
-        setWishlist(wishlistData);
-      }) 
-    } 
-    else{
-      console.log('ERROR');
-    }
+      if (user) {
+        const response = await axios.get(`http://localhost:4000/wishlist/${user.id}`);
+        setWishlist(response.data);
+      }
     } catch (error) {
       console.error('Error adding item to wishlist: ', error);
     }
   };
-  
-  
+
   const removeFromWishlist = async (itemId) => {
     try {
-      // Remove item from the wishlist
-      await axios.post(`http://localhost:4000/wishlist/remove`, { itemId }); // Adjust the endpoint accordingly
+      await axios.post(`http://localhost:4000/wishlist/remove`, { itemId });
 
-      // Refresh the wishlist items
       const user = JSON.parse(localStorage.getItem('user'));
-      if(user){
-      const response = await axios.get(`http://localhost:4000/wishlist/${user.id}`,); // Adjust the endpoint accordingly
-      setWishlist(response.data);
-    } 
-    else{
-      console.log('ERROR');
-    }}
-    catch (error) {
+      if (user) {
+        const response = await axios.get(`http://localhost:4000/wishlist/${user.id}`);
+        setWishlist(response.data);
+      }
+    } catch (error) {
       console.error('Error removing item from wishlist: ', error);
     }
   };
@@ -102,58 +69,91 @@ function Products() {
     return wishlist.some((item) => item.itemId === itemId);
   };
 
+  const openModal = (image) => {
+    setModalImage(image);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalImage(null);
+  };
+
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
       <Unavbar />
       <div className="container mx-auto p-8">
-        <h2 className="text-3xl font-semibold mb-4 text-center">Books List</h2>
+        <h2 className="text-4xl font-bold text-center mb-6 text-gray-800">Books List</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((item) => (
-            <div key={item._id} className="bg-white p-4 rounded shadow">
-              <img
-                src={`http://localhost:4000/${item.itemImage}`}
-                alt="Item Image"
-                className="rounded-t-lg"
-                style={{ height: '350px', width: '500px' }}
-              />
-              <div>
-                <p className="text-xl font-bold mb-2">{item.title}</p>
-                <p className="text-gray-700 mb-2">Author: {item.author}</p>
-                <p className="text-gray-700 mb-2">Genre: {item.genre}</p>
-                <p className="text-blue-500 font-bold">Price: ${item.price}</p>
+            <div key={item._id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+              <div 
+                className="w-full h-60 flex justify-center items-center bg-gray-200 rounded-t-lg cursor-pointer"
+                onClick={() => openModal(`http://localhost:4000/${item.itemImage}`)}
+              >
+                <img
+                  src={`http://localhost:4000/${item.itemImage}`}
+                  alt="Item Image"
+                  className="object-contain w-full h-full rounded-t-lg"
+                />
+              </div>
+              <div className="text-center mt-4">
+                <p className="text-xl font-semibold text-gray-800 mb-2">{item.title}</p>
+                <p className="text-gray-600 mb-2">Author: {item.author}</p>
+                <p className="text-gray-600 mb-2">Genre: {item.genre}</p>
+                <p className="text-blue-600 font-semibold text-lg">Price: ₹{item.price}</p>
 
-                {isItemInWishlist(item._id) ? (
+                <div className="mt-4 flex justify-center gap-4">
+                  {isItemInWishlist(item._id) ? (
+                    <Button
+                      style={{ backgroundColor: '#e74c3c', border: 'none', padding: '10px 20px', fontSize: '14px' }}
+                      onClick={() => removeFromWishlist(item._id)}
+                    >
+                      Remove from Wishlist
+                    </Button>
+                  ) : (
+                    <Button
+                      style={{ backgroundColor: '#8e44ad', border: 'none', padding: '10px 20px', fontSize: '14px' }}
+                      onClick={() => addToWishlist(item._id)}
+                    >
+                      Add to Wishlist
+                    </Button>
+                  )}
+
                   <Button
-                    style={{ backgroundColor: 'red', border: 'none' }}
-                    onClick={() => removeFromWishlist(item._id)}
+                    style={{ backgroundColor: '#3498db', border: 'none', padding: '10px 20px', fontSize: '14px' }}
                   >
-                    Remove from Wishlist
+                    <Link to={`/uitem/${item._id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                      View Details
+                    </Link>
                   </Button>
-                ) : (
-                  <Button
-                    style={{ backgroundColor: 'rebeccapurple', border: 'none' }}
-                    onClick={() => addToWishlist(item._id)}
-                  >
-                    Add to Wishlist
-                  </Button>
-                )}
-
-                {/* <div style={{display:"flex",justifyContent:"flex-end"}}> */}
-                <Button style={{ backgroundColor: 'rebeccapurple', border: 'none',marginLeft:"100px" }}>
-                  <Link to={`/uitem/${item._id}`} style={{ color: 'white', textDecoration: 'none' }}>
-                    View
-                  </Link>
-                </Button>
-                 {/* </div> */}
-
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Modal for Zoomed Image */}
+        <Modal show={showModal} onHide={closeModal} centered>
+          <Modal.Body className="p-0">
+            {modalImage && (
+              <img
+                src={modalImage}
+                alt="Zoomed Item"
+                className="w-full h-auto"
+                style={{ borderRadius: '8px' }}
+              />
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={closeModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );
 }
 
 export default Products;
-
