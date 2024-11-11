@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { FaHome, FaUsers, FaStoreAlt, FaSignOutAlt } from 'react-icons/fa'; // Icons for admin-related actions
 
 const Anavbar = () => {
   const user = localStorage.getItem('user');
   const userName = user ? JSON.parse(user).name : 'Guest';
+
+  const [hovered, setHovered] = useState(null);
+
+  const handleHover = (index) => {
+    setHovered(index);
+  };
+
+  const handleLeave = () => {
+    setHovered(null);
+  };
 
   return (
     <Navbar
@@ -34,70 +45,71 @@ const Anavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Link
-              to="/ahome"
-              style={{
-                padding: "10px",
-                color: "#FFFFFF",
-                textDecoration: "none",
-                fontSize: '18px',
-                transition: 'opacity 0.3s',
-              }}
-              onMouseEnter={(e) => (e.target.style.opacity = '0.8')}
-              onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            >
-              Home
-            </Link>
-            <Link
-              to="/users"
-              style={{
-                padding: "10px",
-                color: "#FFFFFF",
-                textDecoration: "none",
-                fontSize: '18px',
-                transition: 'opacity 0.3s',
-              }}
-              onMouseEnter={(e) => (e.target.style.opacity = '0.8')}
-              onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            >
-              Users
-            </Link>
-            <Link
-              to="/sellers"
-              style={{
-                padding: "10px",
-                color: "#FFFFFF",
-                textDecoration: "none",
-                fontSize: '18px',
-                transition: 'opacity 0.3s',
-              }}
-              onMouseEnter={(e) => (e.target.style.opacity = '0.8')}
-              onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            >
-              Sellers
-            </Link>
-            <Link
-              to="/"
-              style={{
-                padding: "10px",
-                color: "#FFFFFF",
-                textDecoration: "none",
-                fontSize: '18px',
-                transition: 'opacity 0.3s',
-              }}
-              onMouseEnter={(e) => (e.target.style.opacity = '0.8')}
-              onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            >
-              Logout
-            </Link>
-            <h4 style={{ color: "#FFFFFF", padding: "0 10px", fontSize: '18px' }}>
-              ({userName})
-            </h4>
+            <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+              {/* Navbar Links with Icons and Hover Effect */}
+              <Link
+                to="/ahome"
+                style={hovered === 0 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
+                onMouseEnter={() => handleHover(0)}
+                onMouseLeave={handleLeave}
+              >
+                <FaHome /> Home
+              </Link>
+              <Link
+                to="/users"
+                style={hovered === 1 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
+                onMouseEnter={() => handleHover(1)}
+                onMouseLeave={handleLeave}
+              >
+                <FaUsers /> Users
+              </Link>
+              <Link
+                to="/sellers"
+                style={hovered === 2 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
+                onMouseEnter={() => handleHover(2)}
+                onMouseLeave={handleLeave}
+              >
+                <FaStoreAlt /> Sellers
+              </Link>
+              <Link
+                to="/"
+                style={hovered === 3 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
+                onMouseEnter={() => handleHover(3)}
+                onMouseLeave={handleLeave}
+              >
+                <FaSignOutAlt /> Logout
+              </Link>
+              <h4 style={{ color: "#FFFFFF", padding: "0 10px", fontSize: '18px' }}>
+                ({userName})
+              </h4>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
+};
+
+// Button styling for navbar items
+const buttonStyle = {
+  padding: "8px 20px",
+  backgroundColor: "white",
+  color: "#00072D", // Adjusted text color to match navbar background
+  textDecoration: "none",
+  borderRadius: "5px",
+  fontWeight: "bold",
+  transition: "background-color 0.3s, color 0.3s, transform 0.3s",
+  border: "2px solid white",
+  display: "flex",
+  alignItems: "center",
+  gap: "5px",
+};
+
+// Hovered button style
+const linkStyleHover = {
+  backgroundColor: "#00072D", // New navbar color on hover
+  color: "white",
+  transform: "scale(1.05)", // Slight zoom effect
 };
 
 export default Anavbar;
