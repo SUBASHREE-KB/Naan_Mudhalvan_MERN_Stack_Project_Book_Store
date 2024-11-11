@@ -7,12 +7,20 @@ import Footer from '../Componenets/Footer';
 
 const Uhome = () => {
   return (
-    <div className="home-container" style={{ backgroundColor: '#F1F1F1', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="home-container" style={{
+      backgroundImage: 'url(https://i.pinimg.com/564x/cf/8a/4f/cf8a4f7d36537e23f94bf01661b8cd09.jpg)',
+      backgroundSize: 'cover',        // Ensures the image covers the screen
+      backgroundPosition: 'center',   // Centers the image
+      backgroundRepeat: 'no-repeat',  // Prevents the image from repeating if the container is larger than the image
+      minHeight: '100vh',             // Ensures the container takes up at least the full height of the viewport
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
       <Unavbar />
-      
+
       <div className="container" style={{ flex: 1, padding: '20px' }}>
         <h1 className="text-center mb-4" style={{ fontSize: "40px", color: "#333333", fontWeight: 'bold' }}>Best Sellers</h1>
-        
+
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px' }}>
           {/* First Card */}
           <Card className="product-card">
@@ -20,7 +28,7 @@ const Uhome = () => {
               <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1524451661i/39924789.jpg" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>RICH DAD <br/> POOR DAD</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>RICH DAD <br /> POOR DAD</Card.Title>
             </Card.Body>
           </Card>
 
@@ -30,7 +38,7 @@ const Uhome = () => {
               <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1463241782i/30186948.jpg" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>THINK AND <br/> GROW RICH</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>THINK AND <br /> GROW RICH</Card.Title>
             </Card.Body>
           </Card>
 
@@ -56,7 +64,7 @@ const Uhome = () => {
         </div>
 
         <br />
-        
+
         <h1 className="text-center mb-4" style={{ fontSize: "40px", color: "#333333", fontWeight: 'bold' }}>Top Recommendations</h1>
 
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px' }}>
@@ -101,7 +109,7 @@ const Uhome = () => {
           </Card>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   )

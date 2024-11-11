@@ -19,7 +19,7 @@ const Home = () => {
               letterSpacing: "1px"
             }}
           >
-            BookStore
+            BookScape
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

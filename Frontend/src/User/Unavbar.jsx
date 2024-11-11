@@ -9,7 +9,7 @@ const Unavbar = () => {
     <Navbar expand="lg" style={{ backgroundColor: "#00072D", padding: '10px 0' }}>
       <Container>
         <Navbar.Brand>
-          <Link to='/uhome' style={{ color: '#ffffff', textDecoration: "none", fontWeight: 'bold', fontSize: '24px' }}>BookStore</Link>
+          <Link to='/uhome' style={{ color: '#ffffff', textDecoration: "none", fontWeight: 'bold', fontSize: '24px' }}>BookScape</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

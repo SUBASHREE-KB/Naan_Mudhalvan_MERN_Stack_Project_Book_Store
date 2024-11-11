@@ -87,7 +87,7 @@ function Products() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((item) => (
             <div key={item._id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out">
-              <div 
+              <div
                 className="w-full h-60 flex justify-center items-center bg-gray-200 rounded-t-lg cursor-pointer"
                 onClick={() => openModal(`http://localhost:4000/${item.itemImage}`)}
               >

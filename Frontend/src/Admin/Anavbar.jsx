@@ -28,7 +28,7 @@ const Anavbar = () => {
               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
             }}
           >
-            BookStore (Admin)
+            BookScape (Admin)
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

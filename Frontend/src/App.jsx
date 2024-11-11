@@ -16,7 +16,7 @@ import Uhome from './User/Uhome';
 import OrderItem from './User/OrderItem';
 import Shome from './Seller/Shome';
 import Ssignup from './Seller/Ssignup';
-import Home from './Componenets/Home';
+import Home from './Componenets/Front';
 import Alogin from './Admin/Alogin';
 import Asignup from './Admin/Asignup';
 import Ahome from './Admin/Ahome';

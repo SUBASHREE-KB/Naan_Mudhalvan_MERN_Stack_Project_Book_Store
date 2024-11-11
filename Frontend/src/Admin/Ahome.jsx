@@ -244,10 +244,10 @@ function Ahome() {
           <Link to="/users" className="w-48 h-24 bg-purple-700 hover:bg-purple-800 text-white rounded-lg shadow-lg flex items-center justify-center font-semibold text-lg transform hover:scale-105 transition-all duration-200">
             USERS <br /> {totalUsers}
           </Link>
-          <Link to="/vendors" className="w-48 h-24 bg-pink-600 hover:bg-pink-700 text-white rounded-lg shadow-lg flex items-center justify-center font-semibold text-lg transform hover:scale-105 transition-all duration-200">
+          <Link to="/sellers" className="w-48 h-24 bg-pink-600 hover:bg-pink-700 text-white rounded-lg shadow-lg flex items-center justify-center font-semibold text-lg transform hover:scale-105 transition-all duration-200">
             VENDORS <br /> {totalVendors}
           </Link>
-          <Link to="/items" className="w-48 h-24 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-lg flex items-center justify-center font-semibold text-lg transform hover:scale-105 transition-all duration-200">
+          <Link to="/uproducts" className="w-48 h-24 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-lg flex items-center justify-center font-semibold text-lg transform hover:scale-105 transition-all duration-200">
             ITEMS <br /> {totalItems}
           </Link>
           <Link to="/orders" className="w-48 h-24 bg-yellow-500 hover:bg-yellow-600 text-gray-900 rounded-lg shadow-lg flex items-center justify-center font-semibold text-lg transform hover:scale-105 transition-all duration-200">
