@@ -25,40 +25,40 @@ const Uhome = () => {
           {/* First Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1524451661i/39924789.jpg" />
+              <Card.Img variant="top" src="https://www.sperling.it/content/uploads/2021/06/978882007130HIG.JPG" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>RICH DAD <br /> POOR DAD</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>THE INHERITANCE<br /> GAMES </Card.Title>
             </Card.Body>
           </Card>
 
           {/* Second Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1463241782i/30186948.jpg" />
+              <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.toaO6Oxgmk1vVRrhY0EePwHaLe?rs=1&pid=ImgDetMain" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>THINK AND <br /> GROW RICH</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>A GAME OF <br /> THRONES</Card.Title>
             </Card.Body>
           </Card>
 
           {/* Third Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1674147285i/80830635.jpg" />
+              <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.jqRJQ5mzfrM9WdpdRWmC0AHaLb?rs=1&pid=ImgDetMain" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>DON'T LET HER STAY</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>DIARY OF <br /> A WIMPY KID</Card.Title>
             </Card.Body>
           </Card>
 
           {/* Fourth Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1675642559i/65214203.jpg" />
+              <Card.Img variant="top" src="https://imgv2-1-f.scribdassets.com/img/word_document/251891517/original/41c439d8f6/1626299276?v=1" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>KILLING THE WITCHES</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>GREAT EXPECTATIONS</Card.Title>
             </Card.Body>
           </Card>
         </div>
@@ -81,30 +81,30 @@ const Uhome = () => {
           {/* Sixth Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692288251i/122765395.jpg" />
+              <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.K48dQmDvKrj6RhrNtzkWgQHaLL?rs=1&pid=ImgDetMain" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>ELON MUSK</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>ATOMIC HABITS</Card.Title>
             </Card.Body>
           </Card>
 
           {/* Seventh Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1544102229i/42983957.jpg" />
+              <Card.Img variant="top" src="https://www.thoughtco.com/thmb/SuveYjmc-r0wMBYj4QOea0cE7D0=/1488x2338/filters:fill(auto,1)/Twilight_book_cover-589fa4625f9b58819cb2e790.jpg" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>THE MOSQUITO</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>TWILIGHT</Card.Title>
             </Card.Body>
           </Card>
 
           {/* Eighth Card */}
           <Card className="product-card">
             <Link to='/uproducts'>
-              <Card.Img variant="top" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1347493537i/1979210.jpg" />
+              <Card.Img variant="top" src="https://i.thenile.io/r1000/9780486412351.jpg?r=5e9c2050b1a5c" />
             </Link>
             <Card.Body>
-              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>JOURNEY ON THE JAMES</Card.Title>
+              <Card.Title className='text-center' style={{ fontSize: '18px', fontWeight: 'bold' }}>HEIDI</Card.Title>
             </Card.Body>
           </Card>
         </div>

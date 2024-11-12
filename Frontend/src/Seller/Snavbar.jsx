@@ -74,7 +74,7 @@ const Snavbar = () => {
               </Link>
             </div>
             {/* Display Username */}
-            <h4 style={{ color: "white", marginLeft: "20px", fontWeight: '400' }}>({JSON.parse(get).name})</h4>
+            <h4 style={{ color: "white", marginLeft: "20px", fontWeight: '400' }}>Welcome {JSON.parse(get).name}</h4>
           </Nav>
         </Navbar.Collapse>
       </Container>

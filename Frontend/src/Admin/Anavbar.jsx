@@ -39,7 +39,7 @@ const Anavbar = () => {
               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
             }}
           >
-            BookScape (Admin)
+            BookScape
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -80,7 +80,7 @@ const Anavbar = () => {
                 <FaSignOutAlt /> Logout
               </Link>
               <h4 style={{ color: "#FFFFFF", padding: "0 10px", fontSize: '18px' }}>
-                ({userName})
+                Welcome Admin
               </h4>
             </div>
           </Nav>

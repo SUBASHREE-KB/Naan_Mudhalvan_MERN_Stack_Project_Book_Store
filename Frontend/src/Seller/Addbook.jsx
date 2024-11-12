@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Vnavbar from './Snavbar';
-
+import Footer from '../Componenets/Footer';
 function Additem() {
   const [formData, setFormData] = useState({
     description: '',
@@ -181,27 +181,8 @@ function Additem() {
       )}
 
       {/* Footer Section */}
-      <footer className="bg-gray-900 text-white mt-12 p-8">
-        <div className="container mx-auto flex justify-between flex-wrap">
-          <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h3 className="font-semibold text-lg mb-4 text-blue-400">About Us</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Welcome to our bookstore, where we celebrate the love of reading and bring a vast collection of books across genres to passionate readers.
-            </p>
-          </div>
-          <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h3 className="font-semibold text-lg mb-4 text-blue-400">Contact Us</h3>
-            <p className="text-gray-400 text-sm mb-2"><i className="fas fa-envelope"></i> bookstore@example.com</p>
-            <p className="text-gray-400 text-sm mb-2"><i className="fas fa-phone"></i> (123) 456-7890</p>
-          </div>
-        </div>
-        <div className="text-center mt-4 text-gray-500 text-sm italic">
-          "A room without books is like a body without a soul." — Marcus Tullius Cicero
-        </div>
-        <div className="text-center mt-12 text-gray-500 text-sm">
-          &copy; 2024 Bookstore. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
+
     </div>
   );
 }
