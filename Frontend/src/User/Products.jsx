@@ -35,11 +35,11 @@ function Products() {
   const addToWishlist = async (itemId) => {
     try {
       const selectedItem = items.find((item) => item._id === itemId);
-      const { title, itemImage, _id: itemId2 } = selectedItem;
+      const { title, itemImage, _id: itemId2 , price, author, genre } = selectedItem;
       const userId = JSON.parse(localStorage.getItem('user')).id;
       const userName = JSON.parse(localStorage.getItem('user')).name;
 
-      await axios.post(`http://localhost:4000/wishlist/add`, { itemId: itemId2, title, itemImage, userId, userName });
+      await axios.post(`http://localhost:4000/wishlist/add`, { itemId: itemId2, title, itemImage, userId, userName , price, author, genre});
 
       const user = JSON.parse(localStorage.getItem('user'));
       if (user) {

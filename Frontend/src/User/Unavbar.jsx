@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FaHome, FaBook, FaHeart, FaList, FaSignOutAlt } from 'react-icons/fa'; // Icons for a more elegant look
-
+import { FaHome, FaBook, FaHeart, FaList, FaSignOutAlt } from "react-icons/fa";
 const Unavbar = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const [hovered, setHovered] = useState(null);
 
@@ -17,58 +16,96 @@ const Unavbar = () => {
   };
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: "#00072D", padding: '10px 0' }}>
+    <Navbar
+      expand="lg"
+      style={{ backgroundColor: "#00072D", padding: "10px 0" }}
+    >
       <Container>
         <Navbar.Brand>
-          <Link to='/uhome' style={{ color: '#ffffff', textDecoration: "none", fontWeight: 'bold', fontSize: '24px' }}>BookScape</Link>
+          <Link
+            to="/uhome"
+            style={{
+              color: "#ffffff",
+              textDecoration: "none",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            BookScape
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto" style={{ alignItems: 'center' }}>
+          <Nav className="ml-auto" style={{ alignItems: "center" }}>
             <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-              {/* Navbar Links with Icons and Hover Effect */}
-              <Link 
-                to="/uhome" 
-                style={hovered === 0 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(0)} 
+              <Link
+                to="/uhome"
+                style={
+                  hovered === 0
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(0)}
                 onMouseLeave={handleLeave}
               >
                 <FaHome /> Home
               </Link>
-              <Link 
-                to="/uproducts" 
-                style={hovered === 1 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(1)} 
+              <Link
+                to="/uproducts"
+                style={
+                  hovered === 1
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(1)}
                 onMouseLeave={handleLeave}
               >
                 <FaBook /> Books
               </Link>
-              <Link 
-                to="/wishlist" 
-                style={hovered === 2 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(2)} 
+              <Link
+                to="/wishlist"
+                style={
+                  hovered === 2
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(2)}
                 onMouseLeave={handleLeave}
               >
                 <FaHeart /> Wishlist
               </Link>
-              <Link 
-                to="/myorders" 
-                style={hovered === 3 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(3)} 
+              <Link
+                to="/myorders"
+                style={
+                  hovered === 3
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(3)}
                 onMouseLeave={handleLeave}
               >
                 <FaList /> My Orders
               </Link>
-              <Link 
-                to="/" 
-                style={hovered === 4 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(4)} 
+              <Link
+                to="/"
+                style={
+                  hovered === 4
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(4)}
                 onMouseLeave={handleLeave}
               >
                 <FaSignOutAlt /> Logout
               </Link>
-              <h4 style={{ color: "#ffffff", margin: '0 0 0 15px', fontSize: '18px' }}>
-                {user ? `Welcome ${user.name}` : ''}
+              <h4
+                style={{
+                  color: "#ffffff",
+                  margin: "0 0 0 15px",
+                  fontSize: "18px",
+                }}
+              >
+                {user ? `Welcome ${user.name}` : ""}
               </h4>
             </div>
           </Nav>
@@ -78,11 +115,10 @@ const Unavbar = () => {
   );
 };
 
-// Button styling for navbar items
 const buttonStyle = {
   padding: "8px 20px",
   backgroundColor: "white",
-  color: "#00072D", // Adjusted text color to match navbar background
+  color: "#00072D",
   textDecoration: "none",
   borderRadius: "5px",
   fontWeight: "bold",
@@ -93,11 +129,10 @@ const buttonStyle = {
   gap: "5px",
 };
 
-// Hovered button style
 const linkStyleHover = {
-  backgroundColor: "#00072D", // New navbar color on hover
+  backgroundColor: "#00072D",
   color: "white",
-  transform: "scale(1.05)", // Slight zoom effect
+  transform: "scale(1.05)",
 };
 
 export default Unavbar;

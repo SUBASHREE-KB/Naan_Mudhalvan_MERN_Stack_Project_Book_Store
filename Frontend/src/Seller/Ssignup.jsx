@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Home from '../Componenets/Home';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Home from "../Componenets/Home";
 
 const Ssignup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -17,9 +17,9 @@ const Ssignup = () => {
     axios
       .post("http://localhost:4000/ssignup", payload)
       .then((result) => {
-        alert('Account created');
+        alert("Account created");
         console.log(result);
-        navigate('/slogin');
+        navigate("/slogin");
       })
       .catch((err) => {
         console.log(err);
@@ -34,11 +34,16 @@ const Ssignup = () => {
 
   return (
     <div>
-      <Home />  {/* Home Component is rendered here */}
+      <Home />
 
-      <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('https://static.vecteezy.com/system/resources/previews/006/262/479/large_2x/white-and-blue-tone-abstract-background-backdrop-for-presentation-design-for-website-concept-of-beauty-and-health-business-brochure-free-photo.jpg')" }}>
+      <div
+        className="min-h-screen flex items-center justify-center bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://static.vecteezy.com/system/resources/previews/006/262/479/large_2x/white-and-blue-tone-abstract-background-backdrop-for-presentation-design-for-website-concept-of-beauty-and-health-business-brochure-free-photo.jpg')",
+        }}
+      >
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
-          {/* Right Side: Image */}
           <div className="hidden md:block md:w-1/2">
             <img
               src="https://i.pinimg.com/736x/77/6c/00/776c000431c222763b0d7fef8b11c36e.jpg"
@@ -47,12 +52,16 @@ const Ssignup = () => {
             />
           </div>
 
-          {/* Left Side: Signup Form */}
           <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Seller Registration</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+              Seller Registration
+            </h2>
             <form className="space-y-6 w-80" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Name
                 </label>
                 <input
@@ -66,7 +75,10 @@ const Ssignup = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email address
                 </label>
                 <input
@@ -80,7 +92,10 @@ const Ssignup = () => {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
                 <input

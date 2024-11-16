@@ -1,15 +1,18 @@
-// src/components/Navbar.js
-
-import React, { useState } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FaHome, FaBoxOpen, FaPlusCircle, FaList, FaSignOutAlt } from 'react-icons/fa'; // Icons for a more elegant look
+import {
+  FaHome,
+  FaBoxOpen,
+  FaPlusCircle,
+  FaList,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 const Snavbar = () => {
-  const get = localStorage.getItem('user');
-  const navbarBlueColor = "#00072D"; // Updated color code
+  const get = localStorage.getItem("user");
+  const navbarBlueColor = "#00072D";
 
-  // State for hover effect
   const [hovered, setHovered] = useState(null);
 
   const handleHover = (index) => {
@@ -21,60 +24,100 @@ const Snavbar = () => {
   };
 
   return (
-    <Navbar variant="dark" expand="lg" style={{ backgroundColor: navbarBlueColor, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}>
+    <Navbar
+      variant="dark"
+      expand="lg"
+      style={{
+        backgroundColor: navbarBlueColor,
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <Container>
-        {/* Site Title with Elegant Font */}
-        <Navbar.Brand style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', fontWeight: '600' }}>
-          <Link to='/shome' style={{ color: "white", textDecoration: "none" }}>BookScape</Link>
+        <Navbar.Brand
+          style={{
+            fontFamily: "Playfair Display, serif",
+            fontSize: "2rem",
+            fontWeight: "600",
+          }}
+        >
+          <Link to="/shome" style={{ color: "white", textDecoration: "none" }}>
+            BookScape
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto" style={{ display: "flex", alignItems: "center" }}>
+          <Nav
+            className="ml-auto"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-              {/* Navbar Links with Icons and Hover Effect */}
-              <Link 
-                to="/shome" 
-                style={hovered === 0 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(0)} 
+              <Link
+                to="/shome"
+                style={
+                  hovered === 0
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(0)}
                 onMouseLeave={handleLeave}
               >
                 <FaHome /> Home
               </Link>
-              <Link 
-                to="/myproducts" 
-                style={hovered === 1 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(1)} 
+              <Link
+                to="/myproducts"
+                style={
+                  hovered === 1
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(1)}
                 onMouseLeave={handleLeave}
               >
                 <FaBoxOpen /> My Products
               </Link>
-              <Link 
-                to="/addbook" 
-                style={hovered === 2 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(2)} 
+              <Link
+                to="/addbook"
+                style={
+                  hovered === 2
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(2)}
                 onMouseLeave={handleLeave}
               >
                 <FaPlusCircle /> Add Books
               </Link>
-              <Link 
-                to="/orders" 
-                style={hovered === 3 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(3)} 
+              <Link
+                to="/orders"
+                style={
+                  hovered === 3
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(3)}
                 onMouseLeave={handleLeave}
               >
                 <FaList /> Orders
               </Link>
-              <Link 
-                to="/" 
-                style={hovered === 4 ? { ...buttonStyle, ...linkStyleHover } : buttonStyle}
-                onMouseEnter={() => handleHover(4)} 
+              <Link
+                to="/"
+                style={
+                  hovered === 4
+                    ? { ...buttonStyle, ...linkStyleHover }
+                    : buttonStyle
+                }
+                onMouseEnter={() => handleHover(4)}
                 onMouseLeave={handleLeave}
               >
                 <FaSignOutAlt /> Logout
               </Link>
             </div>
-            {/* Display Username */}
-            <h4 style={{ color: "white", marginLeft: "20px", fontWeight: '400' }}>Welcome {JSON.parse(get).name}</h4>
+
+            <h4
+              style={{ color: "white", marginLeft: "20px", fontWeight: "400" }}
+            >
+              Welcome {JSON.parse(get).name}
+            </h4>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -82,11 +125,10 @@ const Snavbar = () => {
   );
 };
 
-// Button styling for navbar items
 const buttonStyle = {
   padding: "8px 20px",
   backgroundColor: "white",
-  color: "#00072D", // Adjusted text color to match navbar background
+  color: "#00072D",
   textDecoration: "none",
   borderRadius: "5px",
   fontWeight: "bold",
@@ -97,11 +139,10 @@ const buttonStyle = {
   gap: "5px",
 };
 
-// Hovered button style
 const linkStyleHover = {
-  backgroundColor: "#00072D", // New navbar color on hover
+  backgroundColor: "#00072D",
   color: "white",
-  transform: "scale(1.05)", // Slight zoom effect
+  transform: "scale(1.05)",
 };
 
 export default Snavbar;

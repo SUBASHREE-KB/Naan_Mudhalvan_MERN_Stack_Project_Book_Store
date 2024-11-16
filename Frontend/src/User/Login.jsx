@@ -36,11 +36,11 @@ const Login = () => {
 
   return (
     <div>
-      <Home />  {/* Home Component is rendered here */}
+      <Home />  
 
       <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('https://static.vecteezy.com/system/resources/previews/006/262/479/large_2x/white-and-blue-tone-abstract-background-backdrop-for-presentation-design-for-website-concept-of-beauty-and-health-business-brochure-free-photo.jpg')" }}>
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
-          {/* Right Side: Image */}
+         
           <div className="hidden md:block md:w-1/2">
             <img
               src="https://i.pinimg.com/564x/18/3e/4e/183e4e3bb527dd983d66ad5d3930b2e4.jpg"
@@ -49,7 +49,7 @@ const Login = () => {
             />
           </div>
 
-          {/* Left Side: Login Form */}
+          
           <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-8">User Login</h2>
             <form className="space-y-6 w-80" onSubmit={handleSubmit}>

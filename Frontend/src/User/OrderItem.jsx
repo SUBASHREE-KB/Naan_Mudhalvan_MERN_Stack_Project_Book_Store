@@ -44,7 +44,7 @@ function OrderItem() {
         seller: userName,
         sellerId: userId,
         description,
-        booktitel: title,
+        booktitle: title,
         bookauthor: author,
         bookgenre: genre,
         itemImage,
@@ -124,7 +124,6 @@ function OrderItem() {
                     className="w-full h-64 object-contain rounded-lg"
                   />
                 </div>
-
                 <div className="flex justify-between text-lg font-medium">
                   <span>Price:</span>
                   <span>₹{item.price}</span>

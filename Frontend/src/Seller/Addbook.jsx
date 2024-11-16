@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Vnavbar from './Snavbar';
-import Footer from '../Componenets/Footer';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Vnavbar from "./Snavbar";
+import Footer from "../Componenets/Footer";
 function Additem() {
   const [formData, setFormData] = useState({
-    description: '',
-    title: '',
-    author: '',
-    genre: '',
-    price: '',
+    description: "",
+    title: "",
+    author: "",
+    genre: "",
+    price: "",
     itemImage: null,
   });
 
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [isLoading, setIsLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]: name === 'itemImage' ? files[0] : value,
+      [name]: name === "itemImage" ? files[0] : value,
     });
   };
 
@@ -32,23 +32,23 @@ function Additem() {
     setIsLoading(true);
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('genre', formData.genre);
-      formDataToSend.append('title', formData.title);
-      formDataToSend.append('author', formData.author);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('price', formData.price);
-      formDataToSend.append('itemImage', formData.itemImage);
-      formDataToSend.append('userName', user.name);
-      formDataToSend.append('userId', user.id);
+      formDataToSend.append("genre", formData.genre);
+      formDataToSend.append("title", formData.title);
+      formDataToSend.append("author", formData.author);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("price", formData.price);
+      formDataToSend.append("itemImage", formData.itemImage);
+      formDataToSend.append("userName", user.name);
+      formDataToSend.append("userId", user.id);
 
-      await axios.post('http://localhost:4000/items', formDataToSend);
-      setModalMessage('Book added successfully');
+      await axios.post("http://localhost:4000/items", formDataToSend);
+      setModalMessage("Book added successfully");
       setModalVisible(true);
       setTimeout(() => {
-        navigate('/myproducts');
+        navigate("/myproducts");
       }, 2000);
     } catch (error) {
-      setModalMessage('Error adding book. Please try again.');
+      setModalMessage("Error adding book. Please try again.");
       setModalVisible(true);
     } finally {
       setIsLoading(false);
@@ -56,28 +56,28 @@ function Additem() {
   };
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh' }}>
-      {/* Background Image Section */}
+    <div style={{ position: "relative", minHeight: "100vh" }}>
       <div
         style={{
-          backgroundImage: "url('https://cdn11.bigcommerce.com/s-muauag6klf/images/stencil/1280x1280/products/2806/66171/Modern%20Blue%20Jean%20Dustjacket%2047704%20-2%20copy__27539.1713902722.jpg?c=1')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          position: 'absolute',
-          top: '0',
+          backgroundImage:
+            "url('https://cdn11.bigcommerce.com/s-muauag6klf/images/stencil/1280x1280/products/2806/66171/Modern%20Blue%20Jean%20Dustjacket%2047704%20-2%20copy__27539.1713902722.jpg?c=1')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          position: "absolute",
+          top: "0",
           left: 0,
           right: 0,
-          bottom: '0',
+          bottom: "0",
           zIndex: -1,
-          height: '100%',  // Ensure the image covers the full screen height
+          height: "100%",
         }}
       ></div>
 
-      {/* Navbar with fixed position */}
-      <Vnavbar style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1000 }} />
+      <Vnavbar
+        style={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}
+      />
 
-      {/* Main content area */}
       <div className="max-w-lg mx-auto mt-28 p-8 bg-white bg-opacity-30 backdrop-blur-lg shadow-2xl rounded-xl relative z-10">
         <h2 className="text-4xl font-semibold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
           Add New Book
@@ -144,7 +144,9 @@ function Additem() {
             ></textarea>
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Upload Book Image</label>
+            <label className="block text-gray-700 font-medium mb-2">
+              Upload Book Image
+            </label>
             <input
               type="file"
               name="itemImage"
@@ -158,18 +160,21 @@ function Additem() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg w-full focus:outline-none focus:shadow-outline transition duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg w-full focus:outline-none focus:shadow-outline transition duration-300 ${
+              isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            {isLoading ? 'Submitting...' : 'Submit'}
+            {isLoading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
 
-      {/* Modal for success or error message */}
       {modalVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <p className="text-xl font-semibold text-gray-800">{modalMessage}</p>
+            <p className="text-xl font-semibold text-gray-800">
+              {modalMessage}
+            </p>
             <button
               onClick={() => setModalVisible(false)}
               className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 focus:outline-none"
@@ -180,9 +185,7 @@ function Additem() {
         </div>
       )}
 
-      {/* Footer Section */}
       <Footer />
-
     </div>
   );
 }

@@ -4,7 +4,7 @@ import '../Seller/List.css';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Unavbar from './Unavbar';
-import Footer from '../Componenets/Footer'; // Corrected Footer path
+import Footer from '../Componenets/Footer'; 
 
 function Myorders() {
   const [cars, setCars] = useState([]);
@@ -95,7 +95,7 @@ function Myorders() {
                     </div>
                     <div style={{ minWidth: '120px', textAlign: 'center' }}>
                       <p style={{ fontWeight: 'bold', color: '#333' }}>Product Name:</p>
-                      <p>{item.itemname}-{item._id.slice(3, 7)}</p>
+                      <p>{item.booktitle}</p>
                     </div>
                     <div style={{ minWidth: '120px', textAlign: 'center' }}>
                       <p style={{ fontWeight: 'bold', color: '#333' }}>Order ID:</p>
@@ -119,7 +119,7 @@ function Myorders() {
                     </div>
                     <div style={{ minWidth: '100px', textAlign: 'center' }}>
                       <p style={{ fontWeight: 'bold', color: '#333' }}>Price:</p>
-                      <p style={{ color: '#28a745', fontWeight: 'bold' }}>${item.totalamount}</p>
+                      <p style={{ color: '#28a745', fontWeight: 'bold' }}>₹{item.totalamount}</p>
                     </div>
                     <div style={{ minWidth: '100px', textAlign: 'center' }}>
                       <p style={{ fontWeight: 'bold', color: '#333' }}>Status:</p>

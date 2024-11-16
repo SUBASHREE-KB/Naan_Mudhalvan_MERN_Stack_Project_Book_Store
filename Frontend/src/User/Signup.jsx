@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Home from '../Componenets/Home';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Home from "../Componenets/Home";
 
 const Signup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -17,9 +17,9 @@ const Signup = () => {
     axios
       .post("http://localhost:4000/signup", payload)
       .then((result) => {
-        alert('Account created');
+        alert("Account created");
         console.log(result);
-        navigate('/login');
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +34,7 @@ const Signup = () => {
 
   return (
     <div>
-      <Home /> {/* Home Component */}
+      <Home />
 
       <div
         className="min-h-screen flex items-center justify-center bg-cover bg-center"
@@ -44,7 +44,6 @@ const Signup = () => {
         }}
       >
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
-          {/* Right Side: Image */}
           <div className="hidden md:block md:w-1/2">
             <img
               src="https://i.pinimg.com/564x/3d/70/44/3d7044f4b0fe57dfb2f414ae643e8285.jpg"
@@ -53,12 +52,16 @@ const Signup = () => {
             />
           </div>
 
-          {/* Left Side: Signup Form */}
           <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">User Registration</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+              User Registration
+            </h2>
             <form className="space-y-6 w-80" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Name
                 </label>
                 <input
@@ -72,7 +75,10 @@ const Signup = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email address
                 </label>
                 <input
@@ -86,7 +92,10 @@ const Signup = () => {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
                 <input

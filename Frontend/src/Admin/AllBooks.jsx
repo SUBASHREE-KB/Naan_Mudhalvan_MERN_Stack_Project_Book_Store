@@ -1,45 +1,34 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import Unavbar from "./Anavbar";
+import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Unavbar from "./Unavbar";
 
-function Wishlist() {
-  const [wishlist, setWishlist] = useState([]);
+
+function Products() {
+  const [items, setItems] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      axios
-        .get(`http://localhost:4000/wishlist/${user.id}`)
-        .then((response) => {
-          const wishlistData = response.data;
-          setWishlist(wishlistData);
-        })
-        .catch((error) => {
-          console.error("Error fetching wishlist items: ", error);
-        });
-    } else {
-      console.log("ERROR");
-    }
+    axios
+      .get(`http://localhost:4000/item`)
+      .then((response) => {
+        setItems(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching items: ", error);
+      });
   }, []);
 
-  const removeFromWishlist = async (itemId) => {
-    try {
-      await axios.post(`http://localhost:4000/wishlist/remove`, { itemId });
+  const openModal = (image) => {
+    setModalImage(image);
+    setShowModal(true);
+  };
 
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (user) {
-        const response = await axios.get(
-          `http://localhost:4000/wishlist/${user.id}`
-        );
-        setWishlist(response.data);
-      } else {
-        console.log("ERROR");
-      }
-    } catch (error) {
-      console.error("Error removing item from wishlist: ", error);
-    }
+  const closeModal = () => {
+    setShowModal(false);
+    setModalImage(null);
   };
 
   return (
@@ -47,15 +36,20 @@ function Wishlist() {
       <Unavbar />
       <div className="container mx-auto p-8">
         <h2 className="text-4xl font-bold text-center mb-6 text-gray-800">
-          Wishlist
+          Books List
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {wishlist.map((item) => (
+          {items.map((item) => (
             <div
               key={item._id}
               className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
             >
-              <div className="w-full h-60 flex justify-center items-center bg-gray-200 rounded-t-lg">
+              <div
+                className="w-full h-60 flex justify-center items-center bg-gray-200 rounded-t-lg cursor-pointer"
+                onClick={() =>
+                  openModal(`http://localhost:4000/${item.itemImage}`)
+                }
+              >
                 <img
                   src={`http://localhost:4000/${item.itemImage}`}
                   alt="Item Image"
@@ -75,18 +69,6 @@ function Wishlist() {
                 <div className="mt-4 flex justify-center gap-4">
                   <Button
                     style={{
-                      backgroundColor: "#e74c3c",
-                      border: "none",
-                      padding: "10px 20px",
-                      fontSize: "14px",
-                    }}
-                    onClick={() => removeFromWishlist(item.itemId)}
-                  >
-                    Remove from Wishlist
-                  </Button>
-
-                  <Button
-                    style={{
                       backgroundColor: "#3498db",
                       border: "none",
                       padding: "10px 20px",
@@ -94,7 +76,7 @@ function Wishlist() {
                     }}
                   >
                     <Link
-                      to={`/uitem/${item.itemId}`}
+                      to={`/adminitem/${item._id}`}
                       style={{ color: "white", textDecoration: "none" }}
                     >
                       View Details
@@ -105,9 +87,27 @@ function Wishlist() {
             </div>
           ))}
         </div>
+
+        <Modal show={showModal} onHide={closeModal} centered>
+          <Modal.Body className="p-0">
+            {modalImage && (
+              <img
+                src={modalImage}
+                alt="Zoomed Item"
+                className="w-full h-auto"
+                style={{ borderRadius: "8px" }}
+              />
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={closeModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );
 }
 
-export default Wishlist;
+export default Products;

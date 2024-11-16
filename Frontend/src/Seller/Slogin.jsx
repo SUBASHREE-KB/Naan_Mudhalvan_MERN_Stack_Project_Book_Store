@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Home from '../Componenets/Home';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Home from "../Componenets/Home";
 
 const Slogin = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -19,8 +19,8 @@ const Slogin = () => {
         console.log("login: " + res.data.Status);
         if (res.data.Status === "Success") {
           console.log(res.data.user);
-          localStorage.setItem('user', JSON.stringify(res.data.user));
-          navigate('/shome');
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          navigate("/shome");
           alert("login successful");
         } else {
           alert("wrong credentials");
@@ -40,11 +40,12 @@ const Slogin = () => {
 
       <div
         className="min-h-screen flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('https://static.vecteezy.com/system/resources/previews/006/262/479/large_2x/white-and-blue-tone-abstract-background-backdrop-for-presentation-design-for-website-concept-of-beauty-and-health-business-brochure-free-photo.jpg')" }}
+        style={{
+          backgroundImage:
+            "url('https://static.vecteezy.com/system/resources/previews/006/262/479/large_2x/white-and-blue-tone-abstract-background-backdrop-for-presentation-design-for-website-concept-of-beauty-and-health-business-brochure-free-photo.jpg')",
+        }}
       >
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
-
-          {/* Right Side: Image */}
           <div className="hidden md:block md:w-1/2">
             <img
               src="https://i.pinimg.com/564x/ec/c6/f0/ecc6f0bcf3a99ed899eaed8b00237747.jpg"
@@ -53,12 +54,16 @@ const Slogin = () => {
             />
           </div>
 
-          {/* Left Side: Login Form */}
           <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Log In to Seller account</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+              Log In to Seller account
+            </h2>
             <form className="space-y-6 w-80" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email address
                 </label>
                 <input
@@ -74,7 +79,10 @@ const Slogin = () => {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
                 <input

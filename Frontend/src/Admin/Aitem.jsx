@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Unavbar from "./Unavbar";
+import Anavbar from "./Anavbar";
 import { Button } from "react-bootstrap";
 
 const Uitem = () => {
@@ -10,14 +10,14 @@ const Uitem = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/item/${id}`)
+      .get(`http://localhost:4000/admitem/${id}`)
       .then((resp) => setItem(resp.data))
       .catch(() => console.log("Did not get data"));
   }, [id]);
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Unavbar />
+      <Anavbar />
       <div className="container mx-auto px-4 py-8">
         {item && (
           <div className="bg-white shadow-lg rounded-lg p-6 md:flex">
@@ -47,17 +47,6 @@ const Uitem = () => {
                 <p className="text-gray-700">Genre: {item.genre}</p>
                 <p className="text-gray-700">Price: ₹{item.price}</p>
                 <p className="text-gray-700">Seller: {item.userName}</p>
-              </div>
-              <div className="flex justify-center md:justify-start mt-6">
-                <Link to={`/orderitem/${item._id}`}>
-                  <Button
-                    variant="primary"
-                    className="px-4 py-2 rounded shadow-sm transition-all duration-300"
-                    style={{ backgroundColor: "#3498db", border: "none" }}
-                  >
-                    Buy Now
-                  </Button>
-                </Link>
               </div>
             </div>
           </div>
